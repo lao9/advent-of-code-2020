@@ -1,33 +1,42 @@
-// use ferris_says::say;
-// use std::io::{stdout, BufWriter};
-
-// a comment
-
 fn main() {
-    let file_path = "src/demo_day_1_input.txt";
-    let content = std::fs::read_to_string(file_path)
-        .expect("could not read file");
+    let file_path = "src/day_1_input.txt";
+    let content = std::fs::read_to_string(file_path).expect("could not read file");
 
+    let mut num_counter_1 = 0;
+    let mut num_counter_2 = 0;
+    let mut num_counter_3 = 0;
 
-    let thing = [];
-    
-    for (line in content.lines()) {
-        let string = line.read_to_string;
-        
+    let mut vars = [0, 0, 0];
+
+    for line in content.lines() {
+        let num1 = line.parse::<i32>().unwrap();
+
+        for line2 in content.lines() {
+            let num2 = line2.parse::<i32>().unwrap();
+
+            for line3 in content.lines() {
+                let num3 = line3.parse::<i32>().unwrap();
+
+                if num_counter_1 != num_counter_2
+                    && num_counter_1 != num_counter_3
+                    && num_counter_2 != num_counter_3
+                {
+                    let sum = num1 + num2 + num3;
+                    if sum == 2020 {
+                        vars[0] = num1;
+                        vars[1] = num2;
+                        vars[2] = num3;
+                    }
+                }
+                num_counter_3 += 1
+            }
+            num_counter_2 += 1;
+        }
+        num_counter_1 = 1;
     }
 
-    for x in 0..item_count {
-        println!("value of iterator is: {}", thing[x]);
-      }
-    
-    // for line in content.lines() {
-    //     println!("{}", line);
-    // }
-
-    // let stdout = stdout();
-    // let message = String::from("Hello fellow Rustaceans!");
-    // let width = message.chars().count();
-
-    // let mut writer = BufWriter::new(stdout.lock());
-    // say(message.as_bytes(), width, &mut writer).unwrap();
+    println!("num1: {}", vars[0]);
+    println!("num2: {}", vars[1]);
+    println!("num3: {}", vars[2]);
+    println!("product: {}", vars[0] * vars[1] * vars[2]);
 }
