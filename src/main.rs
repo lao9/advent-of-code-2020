@@ -8,6 +8,13 @@ fn main() {
 
     let mut vars = [0, 0, 0];
 
+    // faster approaches:
+    // sort - and then iterate through 2 or 3 at a time until you get 2020
+
+    // improvements:
+    // make directories for each day
+    // make CLI arguments for --demo and 
+
     for line in content.lines() {
         let num1 = line.parse::<i32>().unwrap();
 
